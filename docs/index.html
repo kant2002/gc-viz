@@ -10,8 +10,17 @@
 </style>
 </head>
 <body>
-<h1>GC <span id="run_status"></span> <button id="run_button" type="button" onclick="toggle_animation()">Start</button> <span id="bp_msg"></h1>
+<h1>
+  GC <span id="run_status"></span> <button id="run_button" type="button" onclick="toggle_animation()">Start</button> <span id="bp_msg"></span>
+  <select id="display_density" onchange="changeDisplayDensityUI()">
+    <option>low</option>
+    <option>medium</option>
+    <option>high</option>
+    <option>ultra</option>
+  </select>
+</h1>
 
+<div style="display: flex;">
 <div style="border:0px; padding:0px; width:1220px; height:600px; overflow:auto;">
 
 <div style="position: relative;">
@@ -21,6 +30,19 @@
 <canvas id="drawing" width="1201" height="4801" style="position: absolute; left: 0; top: 0; z-index: 3;"></canvas>
 </div>
 
+</div>
+<div>
+  <h2>Legend for places in code where roots logged</h2>
+<ul>
+  <li><a target="_blank" href="https://github.com/kant2002/gc-viz/blob/a76104474ec63d94fc67e03e2e7935464bb60bb1/dkp.cc#L1209">line parsed</a></li>
+  <li><a target="_blank" href="https://github.com/kant2002/gc-viz/blob/a76104474ec63d94fc67e03e2e7935464bb60bb1/dkp.cc#L1217">file parsed</a></li>
+  <li><a target="_blank" href="https://github.com/kant2002/gc-viz/blob/a76104474ec63d94fc67e03e2e7935464bb60bb1/dkp.cc#L1237">group found</a></li>
+  <li><a target="_blank" href="https://github.com/kant2002/gc-viz/blob/a76104474ec63d94fc67e03e2e7935464bb60bb1/dkp.cc#L1247">data grouped</a></li>
+  <li><a target="_blank" href="https://github.com/kant2002/gc-viz/blob/a76104474ec63d94fc67e03e2e7935464bb60bb1/dkp.cc#L1268">transaction history reduced</a></li>
+  <li><a target="_blank" href="https://github.com/kant2002/gc-viz/blob/a76104474ec63d94fc67e03e2e7935464bb60bb1/dkp.cc#L1294">ranking finished</a></li>
+</ul>
+When animation stopped, it mark roots and live objects as red rectangles.
+</div>
 </div>
 
 <script type="text/javascript" src="frames.js"></script>

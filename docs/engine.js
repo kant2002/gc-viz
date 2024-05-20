@@ -25,43 +25,11 @@ var word_width;
 var label_offset_x;
 var label_offset_y;
 
-if (density == 'low') {
-  word_height = 30;
-  word_width = 80;
-  label_offset_x = word_width - 8;
-  label_offset_y = word_height - 8;
-  memory_ctx.font = "24px Helvetica,sans-serif;"
-  animation_ctx.lineWidth = 3;
-}
-else if (density == 'high') {
-  word_height = 16;
-  word_width = 40;
-  label_offset_x = word_width - 2;
-  label_offset_y = word_height - 3;
-  memory_ctx.font = "14px Helvetica,sans-serif;"
-  animation_ctx.lineWidth = 2;
-}
-else if (density == 'ultra') {
-  word_height = 12;
-  word_width = 30;
-  label_offset_x = word_width - 2;
-  label_offset_y = word_height - 2;
-  memory_ctx.font = "10px Helvetica,sans-serif"
-  animation_ctx.lineWidth = 2;
-}
-else { // default medium density
-  word_height = 20;
-  word_width = 50;
-  label_offset_x = word_width - 4;
-  label_offset_y = word_height - 4;
-  memory_ctx.font = "16px Helvetica,sans-serif;"
-  animation_ctx.lineWidth = 3;
-}
+var word_half_height;
+var word_half_width;
+var memory_width;
 
-
-var word_half_height = Math.floor(word_height / 2);
-var word_half_width = Math.floor(word_width / 2);
-var memory_width = Math.floor(memory_canvas.width / word_width)
+changeDisplayDensity(density);
 
 function addressToPoint(addr) {
   var y = Math.floor(addr / memory_width);
@@ -360,4 +328,56 @@ function animate(timestamp) {
       }
     }
   }
+}
+
+function changeDisplayDensityUI() {
+  var selectDensity = document.getElementById('display_density');
+  console.log(selectDensity.value);
+  changeDisplayDensity(selectDensity.value);
+  memory_ctx.clearRect(0, 0, memory_ctx.canvas.width, memory_ctx.canvas.height);
+  legend_ctx.clearRect(0, 0, legend_ctx.canvas.width, legend_ctx.canvas.height);
+
+  //memory_ctx.fillStyle = "#ffffff";
+  //memory_ctx.fillRect(0, 0, memory_ctx.width, memory_ctx.height);
+  drawGuides();
+  drawWord(0);
+}
+
+function changeDisplayDensity(density) {
+  if (density == 'low') {
+    word_height = 30;
+    word_width = 80;
+    label_offset_x = word_width - 8;
+    label_offset_y = word_height - 8;
+    memory_ctx.font = "24px Helvetica,sans-serif;"
+    animation_ctx.lineWidth = 3;
+  }
+  else if (density == 'high') {
+    word_height = 16;
+    word_width = 40;
+    label_offset_x = word_width - 2;
+    label_offset_y = word_height - 3;
+    memory_ctx.font = "14px Helvetica,sans-serif;"
+    animation_ctx.lineWidth = 2;
+  }
+  else if (density == 'ultra') {
+    word_height = 12;
+    word_width = 30;
+    label_offset_x = word_width - 2;
+    label_offset_y = word_height - 2;
+    memory_ctx.font = "10px Helvetica,sans-serif"
+    animation_ctx.lineWidth = 2;
+  }
+  else { // default medium density
+    word_height = 20;
+    word_width = 50;
+    label_offset_x = word_width - 4;
+    label_offset_y = word_height - 4;
+    memory_ctx.font = "16px Helvetica,sans-serif;"
+    animation_ctx.lineWidth = 3;
+  }
+
+  word_half_height = Math.floor(word_height / 2);
+  word_half_width = Math.floor(word_width / 2);
+  memory_width = Math.floor(memory_canvas.width / word_width)
 }
