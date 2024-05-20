@@ -1,4 +1,4 @@
-var density = 'ultra';
+var density = 'low';
 
 var legend_canvas = document.getElementById('legend');
 var legend_ctx = legend_canvas.getContext('2d');

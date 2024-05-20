@@ -24,3 +24,6 @@
 *.xpm
 *.gif
 frames.js
+
+# CMake files
+build/
