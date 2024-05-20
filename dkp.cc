@@ -1177,8 +1177,8 @@ standings = dkp_log.group_by { |trans| trans[1] }.map { |person, history|
 */
 
 int main(int argc, char **argv) {
-    const char *dkp_file_name = (argc == 2 && argv[1]) ? argv[1] : "data/dkp.log-small";
-
+    const char *dkp_file_name = (argc >= 2 && argv[1]) ? argv[1] : "data/dkp.log-small";
+    const char *dkp_variable_name = (argc >= 3 && argv[2]) ? argv[2] : "frame_content";
     assert(Num::size_needed() == 2);
     assert(Str::size_needed("hello") == 7);
     assert(Tup::size_needed(5) == 7);
@@ -1187,7 +1187,7 @@ int main(int argc, char **argv) {
     Mem::info[0].was_allocated();
     Mem::top = 1; // heap[0] is nil
 
-    std::cout << "var frame_content = [\n";
+    std::cout << "var " << dkp_variable_name << " = [\n";
     log_start();
 
     VecRef *dkp_log = new VecRef();

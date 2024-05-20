@@ -16,7 +16,14 @@
     <option>low</option>
     <option>medium</option>
     <option>high</option>
-    <option>ultra</option>
+    <option selected>ultra</option>
+  </select>
+  <select id="gc_type" onchange="changeGCType()">
+    <option>No GC</option>
+    <option>Ref count</option>
+    <option>Mark-Sweep GC</option>
+    <option>Mark-Compact GC</option>
+    <option>Copy GC</option>
   </select>
 </h1>
 
@@ -45,6 +52,11 @@ When animation stopped, it mark roots and live objects as red rectangles.
 </div>
 </div>
 
+<script type="text/javascript" src="no_gc_frames.js"></script>
+<script type="text/javascript" src="ref_count_frames.js"></script>
+<script type="text/javascript" src="mark_sweep_frames.js"></script>
+<script type="text/javascript" src="mark_compact_frames.js"></script>
+<script type="text/javascript" src="copy_frames.js"></script>
 <script type="text/javascript" src="frames.js"></script>
 <script type="text/javascript" src="engine.js"></script>
 

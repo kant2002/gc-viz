@@ -1,4 +1,4 @@
-var density = 'low';
+var density = 'ultra';
 
 var legend_canvas = document.getElementById('legend');
 var legend_ctx = legend_canvas.getContext('2d');
@@ -220,11 +220,21 @@ var animation_running = false;
 var frame = 0;
 var subframe = 0;
 var frame_count = frame_content.length;
+let clear_required = true;
 
 function toggle_animation() {
   var button = document.getElementById('run_button');
   animation_running = !animation_running;
   if (animation_running) {
+    if (clear_required) {
+      clearAll();      
+      const gc_type = document.getElementById('gc_type')
+      gc_type.disabled = true;
+      const display_density = document.getElementById('display_density')
+      display_density.disabled = true;
+      clear_required = false;
+    }
+
     button.innerHTML = "Pause";
     requestAnimationFrame(animate);
   }
@@ -248,10 +258,15 @@ function stop_animation() {
   frame = 0;
   animation_running = false;
   button.innerHTML = "Start";
+  clear_required = true;
   var status = document.getElementById('run_status');
   status.innerHTML = "";
   var bp_msg = document.getElementById('bp_msg');
   bp_msg.innerHTML = "";
+  const gc_type = document.getElementById('gc_type')
+  gc_type.disabled = false;
+  const display_density = document.getElementById('display_density')
+  display_density.disabled = false;
 }
 
 function animate(timestamp) {
@@ -330,17 +345,17 @@ function animate(timestamp) {
   }
 }
 
-function changeDisplayDensityUI() {
-  var selectDensity = document.getElementById('display_density');
-  console.log(selectDensity.value);
-  changeDisplayDensity(selectDensity.value);
+function clearAll() {
   memory_ctx.clearRect(0, 0, memory_ctx.canvas.width, memory_ctx.canvas.height);
   legend_ctx.clearRect(0, 0, legend_ctx.canvas.width, legend_ctx.canvas.height);
-
-  //memory_ctx.fillStyle = "#ffffff";
-  //memory_ctx.fillRect(0, 0, memory_ctx.width, memory_ctx.height);
   drawGuides();
   drawWord(0);
+}
+
+function changeDisplayDensityUI() {
+  var selectDensity = document.getElementById('display_density');
+  changeDisplayDensity(selectDensity.value);
+  clearAll();
 }
 
 function changeDisplayDensity(density) {
