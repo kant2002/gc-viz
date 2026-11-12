@@ -1,4 +1,4 @@
-var copy_frame_content = [
+var copy_gc_frame_content = [
 ['alloc',1,3],
 ['alloc',4,3],
 ['init',4,':<> '],

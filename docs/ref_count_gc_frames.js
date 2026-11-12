@@ -1,4 +1,4 @@
-var ref_count_frame_content = [
+var ref_count_gc_frame_content = [
 ['alloc',1,3],
 ['ref_count',1,1],
 ['alloc',4,3],

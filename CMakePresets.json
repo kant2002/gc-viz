@@ -1,0 +1,35 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "no-gc",
+      "cacheVariables": {
+        "GC_TYPE": "NO_GC"
+      }
+    },
+    {
+      "name": "refcount",
+      "cacheVariables": {
+        "GC_TYPE": "REF_COUNT_GC"
+      }
+    },
+    {
+      "name": "mark-sweep",
+      "cacheVariables": {
+        "GC_TYPE": "MARK_SWEEP_GC"
+      }
+    },
+    {
+      "name": "mark-compact",
+      "cacheVariables": {
+        "GC_TYPE": "MARK_COMPACT_GC"
+      }
+    },
+    {
+      "name": "copy",
+      "cacheVariables": {
+        "GC_TYPE": "COPY_GC"
+      }
+    }
+  ]
+}

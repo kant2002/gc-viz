@@ -1,4 +1,4 @@
-var mark_sweep_frame_content = [
+var mark_sweep_gc_frame_content = [
 ['alloc',1,3],
 ['alloc',4,3],
 ['init',4,':<> '],

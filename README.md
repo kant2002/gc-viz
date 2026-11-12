@@ -175,3 +175,37 @@ Algorithms!
 - non-intuitive performance (garbage is cheap, reuse is expensive)
 
 - foundation for all advanced modern gc
+
+
+## Prequiresites
+
+```
+winget install ImageMagick.Q16-HDRI
+```
+
+## Building
+
+```
+cmake -B build --preset no-gc && cmake --build build
+cmake -B build --preset refcount && cmake --build build
+cmake -B build --preset mark-sweep && cmake --build build
+cmake -B build --preset mark-compact && cmake --build build
+cmake -B build --preset copy && cmake --build build
+```
+
+```
+function Create-AnimationFrames($ALGO)
+{
+  &"build/Debug/dkp_$ALGO" data/dkp.log-big "$($ALGO.ToLowerInvariant())_frame_content" > docs/$($ALGO.ToLowerInvariant())_frames.js
+  if (Test-Path docs/$ALGO.gif) {
+    rm docs/$ALGO.gif
+  }
+  magick -loop 1 -delay 3 *.xpm docs/$ALGO.gif
+	rm -Force *.xpm
+}
+Create-AnimationFrames("NO_GC")
+Create-AnimationFrames("REF_COUNT_GC")
+Create-AnimationFrames("MARK_SWEEP_GC")
+Create-AnimationFrames("MARK_COMPACT_GC")
+Create-AnimationFrames("COPY_GC")
+```
